@@ -159,3 +159,4 @@ obj-$(CONFIG_SDCARD_FS)		+= sdcardfs/
 endif
 
 obj-$(CONFIG_EROFS_FS)		+= erofs/
+obj-$(CONFIG_DYNAMIC_FSYNC) += dyn_sync_cntrl.o
