@@ -135,3 +135,23 @@ obj-y				+= exofs/ # Multiple modules
 obj-$(CONFIG_CEPH_FS)		+= ceph/
 obj-$(CONFIG_PSTORE)		+= pstore/
 obj-$(CONFIG_EFIVAR_FS)		+= efivarfs/
+
+ifdef CONFIG_OPLUS_FEATURE_EXT4_SUPPORT
+obj-$(CONFIG_EXT4_FS)		+= oext4/
+else
+obj-$(CONFIG_EXT4_FS)		+= ext4/
+endif
+
+ifdef CONFIG_OPLUS_FEATURE_EXFAT_SUPPORT
+obj-$(CONFIG_EXFAT_FS)		+= oexfat/
+else
+obj-$(CONFIG_EXFAT_FS)		+= exfat/
+endif
+
+ifdef CONFIG_OPLUS_FEATURE_SDCARDFS_SUPPORT
+obj-$(CONFIG_SDCARD_FS)		+= osdcardfs/
+else
+obj-$(CONFIG_SDCARD_FS)		+= sdcardfs/
+endif
+
+obj-$(CONFIG_EROFS_FS)		+= erofs/
