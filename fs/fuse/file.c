@@ -211,7 +211,7 @@ int fuse_open_common(struct inode *inode, struct file *file, bool isdir)
 
 	if (fuse_is_bad(inode))
 		return -EIO;
-		
+
 	err = generic_file_open(inode, file);
 	if (err)
 		return err;
@@ -1253,6 +1253,9 @@ static ssize_t fuse_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
 
 	if (ff->passthrough.filp)
 		return fuse_passthrough_write_iter(iocb, from);
+
+	if (fuse_is_bad(inode))
+		return -EIO;
 
 	if (get_fuse_conn(inode)->writeback_cache) {
 		/* Update size (EOF optimization) and mode (SUID clearing) */
